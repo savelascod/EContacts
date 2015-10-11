@@ -20,7 +20,8 @@ public class CompaniesSQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(CompaniesDataSource.CREATE_COMPANIES_SCRIPT);
+        db.execSQL(CompaniesDataSource.INSERT_COMPANY_SCRIPT);
     }
 
     @Override

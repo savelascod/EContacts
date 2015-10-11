@@ -1,5 +1,6 @@
 package sqlLite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
@@ -34,10 +35,10 @@ public class CompaniesDataSource {
             "create table " + COMPANIES_TABLE_NAME + "(" +
                     ColumnCompanies.ID_COMPANY + " " + INT_TYPE + " primary key autoincrement," +
                     ColumnCompanies.NAME_COMPANY + " " + STRING_TYPE + " not null," +
-                    ColumnCompanies.URL_COMPANY + " " + STRING_TYPE +
-                    ColumnCompanies.PHONE_COMPANY + " " + LONG_TYPE +
+                    ColumnCompanies.URL_COMPANY + " " + STRING_TYPE + "," +
+                    ColumnCompanies.PHONE_COMPANY + " " + LONG_TYPE + "," +
                     ColumnCompanies.EMAIL_COMPANY + " " + STRING_TYPE + " not null," +
-                    ColumnCompanies.PS_COMPANY + " " + STRING_TYPE +
+                    ColumnCompanies.PS_COMPANY + " " + STRING_TYPE + "," +
                     ColumnCompanies.CLASIFICATION_COMPANY + " " + STRING_TYPE + " not null)";
 
     //default values
@@ -55,6 +56,10 @@ public class CompaniesDataSource {
     public CompaniesDataSource(Context context) {
         openHelper = new CompaniesSQLiteHelper(context);
         database = openHelper.getWritableDatabase();
+    }
+
+    public void insert(ContentValues values) {
+        database.insert(COMPANIES_TABLE_NAME, null, values);
     }
 }
 
