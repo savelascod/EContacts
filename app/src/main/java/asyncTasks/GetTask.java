@@ -24,6 +24,11 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
         this.context = context;
     }
 
+    public GetTask(AsyncResponse delegate, Context context) {
+        this.delegate = delegate;
+        this.context = context;
+    }
+
     @Override
     protected Cursor doInBackground(Void... params) {
         Cursor responseCursor;
@@ -38,13 +43,17 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
                 CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY
         };
 
-        String selection = CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " = ?"
-                + " AND " + CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
+        String selection = null;
+        String[] selectionArgs = null;
 
-        String[] selectionArgs = {
-                name,
-                clasification
-        };
+        if (name != null && clasification != null) {
+            selection = CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " = ?"
+                    + " AND " + CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
+            selectionArgs = new String[]{
+                    name,
+                    clasification
+            };
+        }
         // How you want the results sorted in the resulting Cursor
         String sortOrder =
                 CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " DESC";

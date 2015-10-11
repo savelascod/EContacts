@@ -39,6 +39,8 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
     }
 
     public void searchAll(View view) {
+        GetTask getTask = new GetTask(this, getApplicationContext());
+        getTask.execute();
     }
 
     @Override
