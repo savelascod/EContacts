@@ -2,19 +2,22 @@ package com.application.econtacts.app;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import asyncTasks.AsyncResponse;
+import asyncTasks.CreateTask;
 import sqlLite.CompaniesDataSource;
 import sqlLite.CompaniesSQLiteHelper;
 
 /**
  * Created by mordreth on 10/11/15.
  */
-public class CreateCompanyActivity extends Activity {
+public class CreateCompanyActivity extends Activity implements AsyncResponse {
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -47,10 +50,15 @@ public class CreateCompanyActivity extends Activity {
             values.put(CompaniesDataSource.ColumnCompanies.PS_COMPANY, psInput.getText().toString());
             values.put(CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY, clasificationSpinner.getSelectedItem().toString());
 
-            db.insert(CompaniesDataSource.COMPANIES_TABLE_NAME, null, values);
+            CreateTask createTask = new CreateTask(this, getApplicationContext(), values);
+            createTask.execute();
             finish();
         }
 
 
+    }
+
+    @Override
+    public void processFinish(Cursor responseCursor) {
     }
 }

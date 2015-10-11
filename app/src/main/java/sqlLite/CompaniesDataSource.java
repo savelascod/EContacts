@@ -12,13 +12,14 @@ public class CompaniesDataSource {
     private SQLiteDatabase database;
 
     //Data base meta
-    public static final String COMPANIES_TABLE_NAME = "Companies";
+
     public static final String STRING_TYPE = "text";
     public static final String INT_TYPE = "integer";
     public static final String LONG_TYPE = "bigint";
 
     //Table fields
     public static abstract class ColumnCompanies implements BaseColumns {
+        public static final String COMPANIES_TABLE_NAME = "Companies";
         public static final String ID_COMPANY = BaseColumns._ID;
         public static final String NAME_COMPANY = "name";
         public static final String URL_COMPANY = "url";
@@ -30,7 +31,7 @@ public class CompaniesDataSource {
 
     //Table creation Script
     public static final String CREATE_COMPANIES_SCRIPT =
-            "create table " + COMPANIES_TABLE_NAME + "(" +
+            "create table " + ColumnCompanies.COMPANIES_TABLE_NAME + "(" +
                     ColumnCompanies.ID_COMPANY + " " + INT_TYPE + " primary key autoincrement," +
                     ColumnCompanies.NAME_COMPANY + " " + STRING_TYPE + " not null," +
                     ColumnCompanies.URL_COMPANY + " " + STRING_TYPE + "," +
@@ -41,7 +42,7 @@ public class CompaniesDataSource {
 
     //default values
     public static final String INSERT_COMPANY_SCRIPT =
-            "insert into " + COMPANIES_TABLE_NAME + " values(" +
+            "insert into " + ColumnCompanies.COMPANIES_TABLE_NAME + " values(" +
                     "null," +
                     "\"MyCreateam\"," +
                     "\"www.mycreateam.com\"," +
@@ -52,7 +53,7 @@ public class CompaniesDataSource {
 
     //delete table
     public static final String DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + COMPANIES_TABLE_NAME;
+            "DROP TABLE IF EXISTS " + ColumnCompanies.COMPANIES_TABLE_NAME;
 
     public CompaniesDataSource() {
     }
