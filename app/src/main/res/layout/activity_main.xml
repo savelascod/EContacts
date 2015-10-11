@@ -24,23 +24,23 @@
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button" android:layout_gravity="center_horizontal"/>
+                android:text="@string/create_message"
+                android:id="@+id/button" android:layout_gravity="center_horizontal" android:onClick="createCompany"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button2" android:layout_gravity="center_horizontal"/>
+                android:text="@string/retrieve_message"
+                android:id="@+id/button2" android:layout_gravity="center_horizontal" android:onClick="retrieveCompany"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button3" android:layout_gravity="center_horizontal"/>
+                android:text="@string/update_message"
+                android:id="@+id/button3" android:layout_gravity="center_horizontal" android:onClick="updateCompany"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button4" android:layout_gravity="center_horizontal"/>
+                android:text="@string/delete_message"
+                android:id="@+id/button4" android:layout_gravity="center_horizontal" android:onClick="deleteCompany"/>
     </LinearLayout>
 
 </RelativeLayout>
