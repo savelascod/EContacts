@@ -7,9 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by mordreth on 10/11/15.
  */
-public class CompanySQLiteHelper extends SQLiteOpenHelper {
-    public CompanySQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+
+
+public class CompaniesSQLiteHelper extends SQLiteOpenHelper {
+
+    public static final String DATABASE_NAME = "Companies.db";
+    public static final int DATABASE_VERSION = 1;
+
+    public CompaniesSQLiteHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
