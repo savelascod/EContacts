@@ -1,5 +1,6 @@
 package com.application.econtacts.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -39,6 +40,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void createCompany(View view) {
+        Intent intent = new Intent(this, CreateCompanyActivity.class);
+        startActivity(intent);
     }
 
     public void updateCompany(View view) {

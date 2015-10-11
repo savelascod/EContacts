@@ -1,7 +1,5 @@
 package dataModel;
 
-import java.util.ArrayList;
-
 /**
  * Created by mordreth on 10/11/15.
  */
@@ -10,13 +8,15 @@ public class Company {
     private String siteURL;
     private long phone;
     private String email;
-    private ArrayList<String> products;
+    private String productsAndServices;
     private String clasification;
 
-    public Company(String name, String clasification, ArrayList<String> products, String email, long phone, String siteURL) {
+
+    public Company(String name, String clasification, String productsAndServices, String email, long phone, String siteURL) {
+
         this.name = name;
         this.clasification = clasification;
-        this.products = products;
+        this.productsAndServices = productsAndServices;
         this.email = email;
         this.phone = phone;
         this.siteURL = siteURL;
@@ -54,14 +54,6 @@ public class Company {
         this.siteURL = siteURL;
     }
 
-    public ArrayList<String> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<String> products) {
-        this.products = products;
-    }
-
     public String getClasification() {
         return clasification;
     }
@@ -69,4 +61,13 @@ public class Company {
     public void setClasification(String clasification) {
         this.clasification = clasification;
     }
+
+    public void setProductsAndServices(String productsAndServices) {
+        this.productsAndServices = productsAndServices;
+    }
+
+    public String getProductsAndServices() {
+        return productsAndServices;
+    }
+
 }
