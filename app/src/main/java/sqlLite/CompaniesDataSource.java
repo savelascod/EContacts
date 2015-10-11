@@ -1,7 +1,5 @@
 package sqlLite;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
@@ -20,7 +18,7 @@ public class CompaniesDataSource {
     public static final String LONG_TYPE = "bigint";
 
     //Table fields
-    public static class ColumnCompanies {
+    public static abstract class ColumnCompanies implements BaseColumns {
         public static final String ID_COMPANY = BaseColumns._ID;
         public static final String NAME_COMPANY = "name";
         public static final String URL_COMPANY = "url";
@@ -52,14 +50,11 @@ public class CompaniesDataSource {
                     "\"desarrollo de software, produccion musical\"," +
                     "\"Software Factory\")";
 
+    //delete table
+    public static final String DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + COMPANIES_TABLE_NAME;
 
-    public CompaniesDataSource(Context context) {
-        openHelper = new CompaniesSQLiteHelper(context);
-        database = openHelper.getWritableDatabase();
-    }
-
-    public void insert(ContentValues values) {
-        database.insert(COMPANIES_TABLE_NAME, null, values);
+    public CompaniesDataSource() {
     }
 }
 

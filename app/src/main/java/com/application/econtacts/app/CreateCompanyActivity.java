@@ -2,24 +2,24 @@ package com.application.econtacts.app;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import sqlLite.CompaniesDataSource;
+import sqlLite.CompaniesSQLiteHelper;
 
 /**
  * Created by mordreth on 10/11/15.
  */
 public class CreateCompanyActivity extends Activity {
-    private CompaniesDataSource dataSource;
 
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.create_company);
-        dataSource = new CompaniesDataSource(this);
     }
 
     public void create(View view) {
@@ -33,6 +33,12 @@ public class CreateCompanyActivity extends Activity {
         if (nameInput.getText().toString().trim().equals("") || emailInput.getText().toString().trim().equals("")) {
             Toast.makeText(this, "Name and email shouldnt be empty", Toast.LENGTH_LONG).show();
         } else {
+            CompaniesSQLiteHelper dbHelper = new CompaniesSQLiteHelper(getApplicationContext());
+
+            // Gets the data repository in write mode
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            // Map of values
             ContentValues values = new ContentValues();
             values.put(CompaniesDataSource.ColumnCompanies.NAME_COMPANY, nameInput.getText().toString());
             values.put(CompaniesDataSource.ColumnCompanies.URL_COMPANY, urlInput.getText().toString());
@@ -41,7 +47,7 @@ public class CreateCompanyActivity extends Activity {
             values.put(CompaniesDataSource.ColumnCompanies.PS_COMPANY, psInput.getText().toString());
             values.put(CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY, clasificationSpinner.getSelectedItem().toString());
 
-            dataSource.insert(values);
+            db.insert(CompaniesDataSource.COMPANIES_TABLE_NAME, null, values);
             finish();
         }
 
