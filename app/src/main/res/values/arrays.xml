@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="clasificationList">
+        <item>@string/clasificationType1</item>
+        <item>@string/clasificationType2</item>
+        <item>@string/clasificationType3</item>
+    </string-array>
+</resources>

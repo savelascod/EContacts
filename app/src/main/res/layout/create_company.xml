@@ -20,32 +20,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Insert Name"
+                android:hint="Insert Name"
                 android:ems="10"
                 android:id="@+id/nameInput"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insert Site URL"
+                android:hint="Insert Site URL"
                 android:id="@+id/urlInput"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
-                android:text="Insert Phone"
+                android:hint="Insert Phone"
                 android:id="@+id/phoneInput"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:text="Insert Email"
+                android:hint="Insert Email"
                 android:id="@+id/emailInput"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insert Products and Services"
+                android:hint="Insert Products and Services"
                 android:id="@+id/productServiceInput"/>
         <LinearLayout
                 android:orientation="horizontal"
@@ -61,12 +61,16 @@
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/clasificationSpinner"/>
+                    android:id="@+id/clasificationSpinner"
+                    android:prompt="@string/clasification"
+                    android:entries="@array/clasificationList"
+                    android:spinnerMode="dialog"
+                    />
         </LinearLayout>
         <Button
                 android:layout_width="397dp"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Register"
                 android:id="@+id/createButton"/>
     </LinearLayout>
 

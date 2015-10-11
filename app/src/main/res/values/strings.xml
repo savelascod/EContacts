@@ -8,4 +8,8 @@
     <string name="update_message">Modify Company</string>
     <string name="retrieve_message">See my Companies</string>
     <string name="delete_message">Delete Company</string>
+    <string name="clasification">Clasification</string>
+    <string name="clasificationType1">Consultory</string>
+    <string name="clasificationType2">Tailor-made Software</string>
+    <string name="clasificationType3">Software Factory</string>
 </resources>
