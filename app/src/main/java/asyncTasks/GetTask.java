@@ -53,7 +53,7 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
 
         if (name != null && clasification != null) {
             selection = CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " = ?"
-                    + " AND " + CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
+                    + " OR " + CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
             selectionArgs = new String[]{
                     name,
                     clasification
