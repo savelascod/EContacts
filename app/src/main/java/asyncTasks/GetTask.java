@@ -39,6 +39,7 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         String[] projection = {
+                CompaniesDataSource.ColumnCompanies.ID_COMPANY,
                 CompaniesDataSource.ColumnCompanies.NAME_COMPANY,
                 CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY
         };

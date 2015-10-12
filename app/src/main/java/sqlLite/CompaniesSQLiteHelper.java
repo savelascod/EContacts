@@ -29,6 +29,7 @@ public class CompaniesSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CompaniesDataSource.DELETE_ENTRIES);
         onCreate(db);
     }
+
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }

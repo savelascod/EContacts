@@ -20,7 +20,7 @@ public class CompaniesDataSource {
     //Table fields
     public static abstract class ColumnCompanies implements BaseColumns {
         public static final String COMPANIES_TABLE_NAME = "Companies";
-        public static final String ID_COMPANY = BaseColumns._ID;
+        public static final String ID_COMPANY = "_id";
         public static final String NAME_COMPANY = "name";
         public static final String URL_COMPANY = "url";
         public static final String PHONE_COMPANY = "phone";

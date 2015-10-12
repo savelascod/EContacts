@@ -1,7 +1,9 @@
 package com.application.econtacts.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,9 +27,6 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.search_filters);
-        itemList = (ListView) findViewById(R.id.searchListView);
-
-        itemList.setAdapter(adapter);
     }
 
     public void searchByFilters(View view) {
@@ -49,5 +48,36 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
 
         String data = responseCursor.getString(responseCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.NAME_COMPANY));
         Log.v("cursor", data);
+
+        displayListView(responseCursor);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void displayListView(Cursor itemCursor) {
+        // The desired columns to be bound
+        String[] columns = new String[]{
+                CompaniesDataSource.ColumnCompanies.ID_COMPANY,
+                CompaniesDataSource.ColumnCompanies.NAME_COMPANY,
+                CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY
+        };
+        // the XML defined views which the data will be bound to
+        int[] to = new int[]{
+                R.id.companyNameText,
+                R.id.companyClasificationText
+        };
+        // create the adapter using the cursor pointing to the desired data
+        //as well as the layout information
+        SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(
+                this, R.layout.company,
+                itemCursor,
+                columns,
+                to,
+                0);
+
+        ListView listView = (ListView) findViewById(R.id.searchListView);
+        // Assign adapter to ListView
+        if (itemCursor.getCount() != 0) {
+            listView.setAdapter(dataAdapter);
+        }
     }
 }
