@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Update Company"
+            android:id="@+id/textViewUpdate" android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true" android:padding="10dp" android:layout_below="@+id/textViewUpdate">
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Insert Name"
+                android:ems="10"
+                android:id="@+id/nameInputUpdate"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Insert Site URL"
+                android:id="@+id/urlInputUpdate"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:hint="Insert Phone"
+                android:id="@+id/phoneInputUpdate"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:hint="Insert Email"
+                android:id="@+id/emailInputUpdate"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Insert Products and Services"
+                android:id="@+id/productServiceInputUpdate"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="10dp" android:padding="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Select Clasification"
+                    android:id="@+id/textView3"/>
+            <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clasificationSpinnerUpdate"
+                    android:prompt="@string/clasification"
+                    android:entries="@array/clasificationList"
+                    android:spinnerMode="dialog"
+                    />
+        </LinearLayout>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/updateButton" android:onClick="updateById"/>
+    </LinearLayout>
+
+</RelativeLayout>

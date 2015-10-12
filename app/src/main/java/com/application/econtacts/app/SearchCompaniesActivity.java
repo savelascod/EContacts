@@ -2,6 +2,7 @@ package com.application.econtacts.app;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
     private CompaniesDataSource dataSource;
     private ListView itemList;
     private SimpleCursorAdapter adapter;
+    private Cursor savedItemCursor;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -45,6 +47,35 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         deleteTask.execute();
     }
 
+    public void updateCompany(View view) {
+        TextView companyId = (TextView) findViewById(R.id.companyIdText);
+        Intent intent = new Intent(this, EditCompanyActivity.class);
+
+        if (savedItemCursor.moveToFirst()) {
+            do {
+                if (savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.ID_COMPANY))
+                        .equals(companyId.getText().toString())) {
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.ID_COMPANY, companyId.getText().toString());
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.NAME_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.NAME_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.EMAIL_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.EMAIL_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.PHONE_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.PHONE_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.PS_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.PHONE_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.PS_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.PS_COMPANY)));
+                    intent.putExtra(CompaniesDataSource.ColumnCompanies.URL_COMPANY,
+                            savedItemCursor.getString(savedItemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.URL_COMPANY)));
+                }
+            } while (savedItemCursor.moveToNext());
+        }
+        startActivity(intent);
+    }
+
     @Override
     public void processFinish(Cursor responseCursor) {
         responseCursor.moveToFirst();
@@ -58,6 +89,9 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void displayListView(Cursor itemCursor) {
+        if (itemCursor != null) {
+            savedItemCursor = itemCursor;
+        }
         // The desired columns to be bound
         String[] columns = new String[]{
                 CompaniesDataSource.ColumnCompanies.ID_COMPANY,

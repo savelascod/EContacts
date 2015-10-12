@@ -28,7 +28,7 @@
         <Button android:layout_width="fill_parent" android:layout_height="35dp" android:text="Delete"
                 android:textSize="13dp" android:onClick="deleteCompany"/>
         <Button android:layout_width="fill_parent" android:layout_height="35dp" android:text="Edit"
-                android:textSize="13dp"/>
+                android:textSize="13dp" android:onClick="updateCompany"/>
     </LinearLayout>
 
 
