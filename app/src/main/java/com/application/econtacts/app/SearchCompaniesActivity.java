@@ -121,7 +121,9 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "works", Toast.LENGTH_LONG).show();
+
+                TextView companyId = (TextView) view.findViewById(R.id.companyIdText);
+                Toast.makeText(getApplicationContext(), companyId.getText().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -133,9 +135,15 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
         deleteTask.execute();
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showDeleteDialog() {
         FragmentManager manager = getFragmentManager();
         DeleteDialog deleteDialog = new DeleteDialog();
         deleteDialog.show(manager, "delete");
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void showCompanyDialog() {
+
     }
 }
