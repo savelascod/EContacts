@@ -84,7 +84,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
 
     @Override
     public void processFinish(Integer result) {
-        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -130,24 +130,12 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
     public void onPositiveDeleteClick(boolean deleteCompany) {
         TextView companyId = (TextView) findViewById(R.id.companyIdText);
         DeleteTask deleteTask = new DeleteTask(this, getApplicationContext(), companyId.getText().toString());
-        ListView listView = (ListView) findViewById(R.id.searchListView);
-        // Assign adapter to ListView
-        listView.setAdapter(null);
         deleteTask.execute();
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showDeleteDialog() {
         FragmentManager manager = getFragmentManager();
         DeleteDialog deleteDialog = new DeleteDialog();
         deleteDialog.show(manager, "delete");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        ListView listView = (ListView) findViewById(R.id.searchListView);
-        // Assign adapter to ListView
-        listView.setAdapter(null);
     }
 }
