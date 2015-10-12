@@ -61,7 +61,7 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
             };
         } else {
             selectionArgs = new String[]{
-                    clasification
+                    clasificationñlñlññl
             };
         }
 
