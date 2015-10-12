@@ -9,13 +9,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Search Contacts"
-            android:id="@+id/textView4" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"/>
+            android:id="@+id/textView4"
+            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:layout_below="@+id/textView4"
-            android:layout_centerHorizontal="true" android:layout_marginTop="20dp" android:padding="5dp">
+            android:layout_centerHorizontal="true" android:layout_marginTop="10dp" android:padding="5dp">
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,13 +32,13 @@
                       android:orientation="horizontal" android:layout_gravity="center">
             <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:text="Search By Filters"
                     android:id="@+id/searchFilterButton" android:onClick="searchByFilters"
                     android:layout_gravity="center_horizontal"/>
             <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:text="Search All"
                     android:id="@+id/searchButton" android:onClick="searchAll"
                     android:layout_gravity="center_horizontal"/>
@@ -47,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/searchListView" android:layout_gravity="center_horizontal"/>
+
 
     </LinearLayout>
 </RelativeLayout>

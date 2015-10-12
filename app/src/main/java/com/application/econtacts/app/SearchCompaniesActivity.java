@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -46,9 +45,6 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
     public void processFinish(Cursor responseCursor) {
         responseCursor.moveToFirst();
 
-        String data = responseCursor.getString(responseCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.NAME_COMPANY));
-        Log.v("cursor", data);
-
         displayListView(responseCursor);
     }
 
@@ -62,6 +58,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         };
         // the XML defined views which the data will be bound to
         int[] to = new int[]{
+                R.id.companyIdext,
                 R.id.companyNameText,
                 R.id.companyClasificationText
         };
@@ -79,5 +76,6 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         if (itemCursor.getCount() != 0) {
             listView.setAdapter(dataAdapter);
         }
+
     }
 }

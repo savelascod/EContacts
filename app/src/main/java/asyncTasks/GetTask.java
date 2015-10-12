@@ -41,7 +41,11 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
         String[] projection = {
                 CompaniesDataSource.ColumnCompanies.ID_COMPANY,
                 CompaniesDataSource.ColumnCompanies.NAME_COMPANY,
-                CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY
+                CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY,
+                CompaniesDataSource.ColumnCompanies.EMAIL_COMPANY,
+                CompaniesDataSource.ColumnCompanies.PHONE_COMPANY,
+                CompaniesDataSource.ColumnCompanies.PS_COMPANY,
+                CompaniesDataSource.ColumnCompanies.URL_COMPANY
         };
 
         String selection = null;
