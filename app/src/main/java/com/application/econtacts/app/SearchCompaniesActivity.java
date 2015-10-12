@@ -2,6 +2,7 @@ package com.application.econtacts.app;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -11,12 +12,13 @@ import android.widget.*;
 import asyncTasks.AsyncResponse;
 import asyncTasks.DeleteTask;
 import asyncTasks.GetTask;
+import com.application.econtacts.app.DeleteDialog.AlertPositiveDeleteListener;
 import sqlLite.CompaniesDataSource;
 
 /**
  * Created by mordreth on 10/11/15.
  */
-public class SearchCompaniesActivity extends Activity implements AsyncResponse {
+public class SearchCompaniesActivity extends Activity implements AsyncResponse, AlertPositiveDeleteListener {
     private CompaniesDataSource dataSource;
     private ListView itemList;
     private SimpleCursorAdapter adapter;
@@ -42,9 +44,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
     }
 
     public void deleteCompany(View view) {
-        TextView companyId = (TextView) findViewById(R.id.companyIdText);
-        DeleteTask deleteTask = new DeleteTask(this, getApplicationContext(), companyId.getText().toString());
-        deleteTask.execute();
+        showDeleteDialog();
     }
 
     public void updateCompany(View view) {
@@ -115,9 +115,9 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
 
         ListView listView = (ListView) findViewById(R.id.searchListView);
         // Assign adapter to ListView
-        if (itemCursor.getCount() != 0) {
-            listView.setAdapter(dataAdapter);
-        }
+
+        listView.setAdapter(dataAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -126,5 +126,16 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         });
     }
 
+    @Override
+    public void onPositiveDeleteClick(boolean deleteCompany) {
+        TextView companyId = (TextView) findViewById(R.id.companyIdText);
+        DeleteTask deleteTask = new DeleteTask(this, getApplicationContext(), companyId.getText().toString());
+        deleteTask.execute();
+    }
 
+    public void showDeleteDialog() {
+        FragmentManager manager = getFragmentManager();
+        DeleteDialog deleteDialog = new DeleteDialog();
+        deleteDialog.show(manager, "delete");
+    }
 }
