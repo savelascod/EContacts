@@ -15,7 +15,6 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
     private AsyncResponse delegate;
     private String name;
     private String clasification;
-    private boolean filters;
 
 
     public GetTask(AsyncResponse delegate, Context context, String name, String clasification) {
@@ -23,13 +22,11 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
         this.name = name;
         this.clasification = clasification;
         this.context = context;
-        this.filters = true;
     }
 
     public GetTask(AsyncResponse delegate, Context context) {
         this.delegate = delegate;
         this.context = context;
-        this.filters = false;
     }
 
     @Override
@@ -51,23 +48,16 @@ public class GetTask extends AsyncTask<Void, Void, Cursor> {
                 CompaniesDataSource.ColumnCompanies.URL_COMPANY
         };
 
-        String selection = CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
-        String[] selectionArgs;
-        if (name != null) {
-            selection += " AND " + CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " = ?";
+        String selection = null;
+        String[] selectionArgs = null;
+
+        if (name != null && clasification != null) {
+            selection = CompaniesDataSource.ColumnCompanies.NAME_COMPANY + " = ?"
+                    + " OR " + CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY + "= ?";
             selectionArgs = new String[]{
                     name,
                     clasification
             };
-        } else {
-            selectionArgs = new String[]{
-                    clasificationñlñlññl
-            };
-        }
-
-        if (!filters) {
-            selection = null;
-            selectionArgs = null;
         }
         // How you want the results sorted in the resulting Cursor
         String sortOrder =
