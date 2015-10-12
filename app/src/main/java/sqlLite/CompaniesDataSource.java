@@ -48,8 +48,24 @@ public class CompaniesDataSource {
                     "\"www.mycreateam.com\"," +
                     "123456789," +
                     "\"mycreateam@gmail.com\"," +
-                    "\"desarrollo de software, produccion musical\"," +
-                    "\"Software Factory\")";
+                    "\"software development, music production\"," +
+                    "\"Software Factory\")," +
+                    "(" +
+                    "null," +
+                    "\"Google\"," +
+                    "\"www.google.com\"," +
+                    "66666," +
+                    "\"google@gmail.com\"," +
+                    "\"Hardware, everything\"," +
+                    "\"Consultory\")," +
+                    "(" +
+                    "null," +
+                    "\"Tumix\"," +
+                    "\"www.tumix.com\"," +
+                    "5555," +
+                    "\"tumix@gmail.com\"," +
+                    "\"gums, nothing more\"," +
+                    "\"Tailor-made Software\")";
 
     //delete table
     public static final String DELETE_ENTRIES =

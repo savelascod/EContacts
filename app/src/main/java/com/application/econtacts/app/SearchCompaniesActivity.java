@@ -84,7 +84,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
 
     @Override
     public void processFinish(Integer result) {
-        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
