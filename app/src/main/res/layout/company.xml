@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-            android:id="@+id/companyIdext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Company ID"/>
-    <TextView
-            android:id="@+id/companyNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Company Name"/>
-    <TextView
-            android:id="@+id/companyClasificationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Clasification"/>
+              android:layout_height="match_parent"
+              android:descendantFocusability="blocksDescendants">
+    <LinearLayout android:layout_width="240dp" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <TextView
+                android:id="@+id/companyIdext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company ID"/>
+        <TextView
+                android:id="@+id/companyNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company Name"/>
+        <TextView
+                android:id="@+id/companyClasificationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Clasification"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <Button android:layout_width="fill_parent" android:layout_height="35dp" android:text="Delete"
+                android:textSize="13dp"/>
+        <Button android:layout_width="fill_parent" android:layout_height="35dp" android:text="Edit"
+                android:textSize="13dp"/>
+    </LinearLayout>
+
 
 </LinearLayout>

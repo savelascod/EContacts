@@ -6,10 +6,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
+import android.widget.*;
 import asyncTasks.AsyncResponse;
 import asyncTasks.GetTask;
 import sqlLite.CompaniesDataSource;
@@ -76,6 +73,11 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         if (itemCursor.getCount() != 0) {
             listView.setAdapter(dataAdapter);
         }
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "works", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
