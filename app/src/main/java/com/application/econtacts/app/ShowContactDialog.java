@@ -6,9 +6,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by mordreth on 10/11/15.
@@ -17,7 +22,7 @@ import android.os.Bundle;
 public class ShowContactDialog extends DialogFragment {
     AlertPositiveExitListener alertPositiveExitListener;
 
-    DialogInterface.OnClickListener deleteListener = new DialogInterface.OnClickListener() {
+    DialogInterface.OnClickListener exitListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             alertPositiveExitListener.onPositiveExitClick(true);
@@ -26,18 +31,20 @@ public class ShowContactDialog extends DialogFragment {
 
     private String name;
     private String siteURL;
-    private long phone;
+    private String phone;
     private String email;
     private String productsAndServices;
     private String clasification;
+    private Context context;
 
-    public ShowContactDialog(String name, String siteUrl, long phone, String email, String productsAndServices, String clasification) {
-        this.name = name;
-        this.siteURL = siteUrl;
-        this.phone = phone;
-        this.email = email;
-        this.productsAndServices = productsAndServices;
+    public ShowContactDialog(Context context, String clasification, String productsAndServices, String email, String phone, String siteURL, String name) {
+        this.context = context;
         this.clasification = clasification;
+        this.productsAndServices = productsAndServices;
+        this.email = email;
+        this.phone = phone;
+        this.siteURL = siteURL;
+        this.name = name;
     }
 
     public void onAttach(Activity activity) {
@@ -58,10 +65,28 @@ public class ShowContactDialog extends DialogFragment {
         /** Setting a title for the window */
 
         /** Setting a label for the alert dialog**/
-        builder.setMessage("Are you sure you want to delete the Company?");
+
+        View view = (View) LayoutInflater.from(context).inflate(R.layout.show_company, null);
+
+        TextView nameText = (TextView) view.findViewById(R.id.showNametext);
+        TextView emailText = (TextView) view.findViewById(R.id.showEmailtext);
+        TextView phoneText = (TextView) view.findViewById(R.id.showPhonetext);
+        TextView urlText = (TextView) view.findViewById(R.id.showURLtext);
+        TextView psText = (TextView) view.findViewById(R.id.showPStext);
+        TextView clasificationText = (TextView) view.findViewById(R.id.showClasificationtext);
+
+        nameText.setText(name);
+        phoneText.setText(phone);
+        psText.setText(productsAndServices);
+        urlText.setText(siteURL);
+        emailText.setText(email);
+        clasificationText.setText(clasification);
+
+
+        builder.setView(view);
 
         /** Setting a positive button and its listener **/
-        builder.setPositiveButton("Yes", deleteListener);
+        builder.setPositiveButton("OK", exitListener);
 
         /** Creating the alert dialog window using the builder class */
         AlertDialog alertDialog = builder.create();

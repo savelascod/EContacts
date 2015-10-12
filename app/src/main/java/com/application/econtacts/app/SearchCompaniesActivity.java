@@ -18,7 +18,7 @@ import sqlLite.CompaniesDataSource;
 /**
  * Created by mordreth on 10/11/15.
  */
-public class SearchCompaniesActivity extends Activity implements AsyncResponse, AlertPositiveDeleteListener {
+public class SearchCompaniesActivity extends Activity implements AsyncResponse, AlertPositiveDeleteListener, ShowContactDialog.AlertPositiveExitListener {
     private CompaniesDataSource dataSource;
     private ListView itemList;
     private SimpleCursorAdapter adapter;
@@ -88,7 +88,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void displayListView(Cursor itemCursor) {
+    public void displayListView(final Cursor itemCursor) {
         if (itemCursor != null) {
             savedItemCursor = itemCursor;
         }
@@ -121,9 +121,29 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String name = null;
+                String siteURL = null;
+                String phone = null;
+                String email = null;
+                String productsAndServices;
+                productsAndServices = null;
+                String clasification = null;
                 TextView companyId = (TextView) view.findViewById(R.id.companyIdText);
-                Toast.makeText(getApplicationContext(), companyId.getText().toString(), Toast.LENGTH_LONG).show();
+
+                if (itemCursor.moveToFirst()) {
+                    do {
+                        if (companyId.getText().toString()
+                                .equals(itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.ID_COMPANY)))) {
+                            name = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.NAME_COMPANY));
+                            siteURL = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.URL_COMPANY));
+                            phone = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.PHONE_COMPANY));
+                            email = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.EMAIL_COMPANY));
+                            productsAndServices = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.PS_COMPANY));
+                            clasification = itemCursor.getString(itemCursor.getColumnIndex(CompaniesDataSource.ColumnCompanies.CLASIFICATION_COMPANY));
+                        }
+                    } while (itemCursor.moveToNext());
+                }
+                showCompanyDialog(name, siteURL, phone, email, productsAndServices, clasification);
             }
         });
     }
@@ -143,7 +163,14 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void showCompanyDialog() {
+    public void showCompanyDialog(String name, String siteURL, String phone, String email, String productsAndServices, String clasification) {
+        FragmentManager manager = getFragmentManager();
+        ShowContactDialog showContactDialog = new ShowContactDialog(getApplicationContext(), clasification, productsAndServices, email, phone, siteURL, name);
+        showContactDialog.show(manager, "show");
+    }
+
+    @Override
+    public void onPositiveExitClick(boolean exit) {
 
     }
 }
