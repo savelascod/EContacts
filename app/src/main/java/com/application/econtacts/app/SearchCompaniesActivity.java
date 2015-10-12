@@ -84,7 +84,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
 
     @Override
     public void processFinish(Integer result) {
-        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -121,7 +121,9 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "works", Toast.LENGTH_LONG).show();
+
+                TextView companyId = (TextView) view.findViewById(R.id.companyIdText);
+                Toast.makeText(getApplicationContext(), companyId.getText().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -130,9 +132,6 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
     public void onPositiveDeleteClick(boolean deleteCompany) {
         TextView companyId = (TextView) findViewById(R.id.companyIdText);
         DeleteTask deleteTask = new DeleteTask(this, getApplicationContext(), companyId.getText().toString());
-        ListView listView = (ListView) findViewById(R.id.searchListView);
-        // Assign adapter to ListView
-        listView.setAdapter(null);
         deleteTask.execute();
     }
 
@@ -143,11 +142,8 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse, 
         deleteDialog.show(manager, "delete");
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        ListView listView = (ListView) findViewById(R.id.searchListView);
-        // Assign adapter to ListView
-        listView.setAdapter(null);
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void showCompanyDialog() {
+
     }
 }
