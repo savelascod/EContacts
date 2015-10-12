@@ -43,14 +43,9 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void updateCompany(View view) {
-    }
-
     public void retrieveCompany(View view) {
         Intent intent = new Intent(this, SearchCompaniesActivity.class);
         startActivity(intent);
     }
 
-    public void deleteCompany(View view) {
-    }
 }

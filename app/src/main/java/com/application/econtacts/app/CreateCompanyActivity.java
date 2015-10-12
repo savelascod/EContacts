@@ -61,4 +61,9 @@ public class CreateCompanyActivity extends Activity implements AsyncResponse {
     @Override
     public void processFinish(Cursor responseCursor) {
     }
+
+    @Override
+    public void processFinish(Integer result) {
+
+    }
 }

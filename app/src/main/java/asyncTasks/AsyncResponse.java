@@ -7,4 +7,6 @@ import android.database.Cursor;
  */
 public interface AsyncResponse {
     void processFinish(Cursor responseCursor);
+
+    void processFinish(Integer result);
 }

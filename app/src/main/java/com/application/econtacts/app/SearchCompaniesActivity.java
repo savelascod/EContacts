@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import asyncTasks.AsyncResponse;
+import asyncTasks.DeleteTask;
 import asyncTasks.GetTask;
 import sqlLite.CompaniesDataSource;
 
@@ -38,11 +39,21 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         getTask.execute();
     }
 
+    public void deleteCompany(View view) {
+        TextView companyId = (TextView) findViewById(R.id.companyIdText);
+        DeleteTask deleteTask = new DeleteTask(this, getApplicationContext(), companyId.getText().toString());
+        deleteTask.execute();
+    }
+
     @Override
     public void processFinish(Cursor responseCursor) {
         responseCursor.moveToFirst();
-
         displayListView(responseCursor);
+    }
+
+    @Override
+    public void processFinish(Integer result) {
+        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -55,7 +66,7 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
         };
         // the XML defined views which the data will be bound to
         int[] to = new int[]{
-                R.id.companyIdext,
+                R.id.companyIdText,
                 R.id.companyNameText,
                 R.id.companyClasificationText
         };
@@ -80,4 +91,6 @@ public class SearchCompaniesActivity extends Activity implements AsyncResponse {
             }
         });
     }
+
+
 }
